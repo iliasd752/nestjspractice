@@ -18,10 +18,13 @@ export class Coffee {
   @Column()
   brand: string;
 
-  @JoinTable() // 👈 Join the 2 tables - only the OWNER-side does this
+  @JoinTable()
   @ManyToMany(
     type => Flavor,
-    flavor => flavor.coffees, // what is "coffee" within the Flavor Entity
-  ) // 👈
-  flavors: string[];
+    flavor => flavor.coffees,
+    {
+      cascade: true, // 👈 or optionally just insert or update ['insert']
+    },
+  )
+  flavors: Flavor[];
 }
