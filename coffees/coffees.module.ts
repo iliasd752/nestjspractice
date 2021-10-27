@@ -11,7 +11,7 @@ class MockCoffeesService {}
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])], // 👈 Adding Coffee Entity here to TypeOrmModule.forFeature
   controllers: [CoffeesController],
-  providers: [CoffeesService],
+  providers: [CoffeesService, {provide: 'COFFEE_BRANDS', useValue: ['buddy brew', 'nescafe']},],
   exports: [CoffeesService]
 })
 export class CoffeesModule {}
