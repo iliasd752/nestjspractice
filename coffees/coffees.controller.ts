@@ -13,7 +13,7 @@ import { CreateCoffeeDto } from "./dto/create-coffee.dto";
 import { UpdateCoffeeDto } from "./dto/update-coffee.dto";
 import { PaginationQueryDto } from "../common/dto/pagination-query.dto";
 import { Public } from "../common/decorators/public.decorator";
-import { ApiResponse } from "@nestjs/swagger";
+import { ApiForbiddenResponse } from "@nestjs/swagger";
 
 @UsePipes(ValidationPipe)
 @Controller('coffees')
@@ -21,7 +21,7 @@ export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {
   }
 
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
   async findAll(@Query() paginationQuery: PaginationQueryDto) {
